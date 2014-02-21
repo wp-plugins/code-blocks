@@ -91,7 +91,7 @@ function CBS_optPage(){
       </div>
      </div>
      <span style="display:inline-block;vertical-align:middle;">The Icon of Code Me button is&nbsp;&nbsp;&nbsp;</span>
-     <img style="display:inline-block;vertical-align:middle;" src="<?echo plugins_url().'/code-blocks/icon.png';?>"/>
+     <img style="display:inline-block;vertical-align:middle;" src="<?echo plugins_url().'/code-blocks/tool-icon.png';?>"/>
      <br/><button name="submit">Save Settings</button>
     </form>
    </div>
