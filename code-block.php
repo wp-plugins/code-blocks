@@ -14,11 +14,14 @@ function CBS_adminMenu() {
 add_action('admin_menu', 'CBS_adminMenu');
 function CBS_optPage(){
  if(isset($_POST['submit'])){
-  update_option("CBS_InVisual",$_POST['visual']);
-  update_option("CBS_InText",$_POST['text']);
+  $isV=isset($_POST['visual']) ? "":"off";
+  update_option("CBS_InVisual",$isV);
+  $isTx=isset($_POST['text']) ? "":"off";
+  update_option("CBS_InText",$isTx);
   update_option("CBS_StartCode",$_POST['before']);
   update_option("CBS_EndCode",$_POST['after']);
-  update_option("CBS_PTag",$_POST['ptag']);
+  $isPt=isset($_POST['ptag']) ? "":"off";
+  update_option("CBS_PTag",$isPt);
   if(!file_put_contents(WP_PLUGIN_DIR. '/code-blocks/editor-style.css', $_POST['css']) && $_POST['css']!=""){
    echo '<div id="message" class="error"><p>Failed To Save Custom CSS. Make Sure you have Write permission in <b>wp-contents/plugins</b> folder.</p></div>';
   }else{
@@ -27,9 +30,9 @@ function CBS_optPage(){
  }
  $startCode=get_option("CBS_StartCode")=="" ? "<pre><code>":get_option("CBS_StartCode");
  $endCode=get_option("CBS_EndCode")=="" ? "</code></pre>":get_option("CBS_EndCode");
- $vchecked=get_option("CBS_InVisual")=="" ? "":"checked='checked'";
- $tchecked=get_option("CBS_InText")=="" ? "":"checked='checked'";
- $pchecked=get_option("CBS_PTag")=="" ? "":"checked='checked'";
+ $vchecked=get_option("CBS_InVisual")=="" ? "checked='checked'":"";
+ $tchecked=get_option("CBS_InText")=="" ? "checked='checked'":"";
+ $pchecked=get_option("CBS_PTag")=="" ? "checked='checked'":"";
 ?>
  <h2>Configure Code Blocks</h2>
  <div id="poststuff">
@@ -102,7 +105,7 @@ function CBS_optPage(){
 /* Visual Editor */
 add_action('admin_init', 'CBS_add_button');
 function CBS_add_button() {
- if(current_user_can('edit_posts') && current_user_can('edit_pages') && get_user_option('rich_editing') == 'true' && get_option("CBS_InVisual")!=""){
+ if(current_user_can('edit_posts') && current_user_can('edit_pages') && get_user_option('rich_editing') == 'true' && get_option("CBS_InVisual")!="off"){
   add_filter('mce_external_plugins', 'CBS_add_plugin');
   add_filter('mce_buttons', 'CBS_register_button');
  }
@@ -125,7 +128,7 @@ function CBS_teButton(){
  $endCode=get_option("CBS_EndCode")=="" ? "</code></pre>":get_option("CBS_EndCode");
  $right_tag = str_replace("\r\n","",$endCode);
  $left_tag = str_replace("\r\n","",$startCode);
- if(get_option("CBS_InText")!="" && get_current_screen()->base!="" && get_current_screen()->base=="post"){
+ if(get_option("CBS_InText")!="off" && get_current_screen()->base!="" && get_current_screen()->base=="post"){
   $content  = '<script type="text/javascript">';
   $content .= "if(typeof QTags != 'undefined'){QTags.addButton( 'CBSbutton', 'Code Block', '".$left_tag."', '".$right_tag."' );}";
   $content .= "</script>";  
