@@ -2,8 +2,8 @@
 header("Content-type: application/x-javascript");
 ?>
 (function() {
- var start = "<?echo urldecode($_GET['start']);?>";
- var end = "<?echo urldecode($_GET['end']);?>";
+ var start = '<?echo urldecode($_GET['start']);?>';
+ var end = '<?echo urldecode($_GET['end']);?>';
  tinymce.create('tinymce.plugins.CBSbutton', {
   init : function(ed, url) {
    ed.addButton('CBSbutton', {

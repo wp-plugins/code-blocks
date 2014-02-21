@@ -12,6 +12,11 @@ function CBS_adminMenu() {
  add_submenu_page('edit.php', __('Code Blocks'), __('Code Blocks'), 'manage_options', 'CBS_admin', 'CBS_optPage');
 }
 add_action('admin_menu', 'CBS_adminMenu');
+function CBSmakeItPretty($s){
+ $s=str_replace('\"','"',$s);
+ $s=str_replace("\'",'"',$s);
+ return $s;
+}
 function CBS_optPage(){
  if(isset($_POST['submit'])){
   $isV=isset($_POST['visual']) ? "":"off";
@@ -65,9 +70,9 @@ function CBS_optPage(){
       <div class="inside">
        <h3 class="hndle"><span>Content</span></h3>
        <div style="font-size: 15px;margin: 10px;font-weight: bold;">Starting Code</div>
-       <textarea name="before" style="display:block;"><?echo $startCode;?></textarea>
+       <textarea name="before" style="display:block;"><?echo CBSmakeItPretty($startCode);?></textarea>
        <div style="font-size: 15px;margin: 10px;font-weight: bold;">End Code</div>
-       <textarea name="after"><?echo $endCode;?></textarea>
+       <textarea name="after"><?echo CBSmakeItPretty($endCode);?></textarea>
        <style>
        .postbox .inside textarea{resize: vertical;width: 100%;height:100px;}
        </style>
@@ -118,7 +123,7 @@ function CBS_add_plugin( $plugin_array ) {
  $url = plugins_url()."/code-blocks";
  $startCode=get_option("CBS_StartCode")=="" ? "<pre><code>":get_option("CBS_StartCode");
  $endCode=get_option("CBS_EndCode")=="" ? "</code></pre>":get_option("CBS_EndCode");
- $plugin_array["CBSbutton"] = $url.'/button.php?start='.urlencode($startCode).'&end='.urlencode($endCode)."&nop=".get_option("CBS_PTag");
+ $plugin_array["CBSbutton"] = $url.'/button.php?start='.urlencode(CBSmakeItPretty($startCode)).'&end='.urlencode(CBSmakeItPretty($endCode))."&nop=".get_option("CBS_PTag");
  return $plugin_array;
 }
 /* HTML Text Editor */
@@ -126,8 +131,8 @@ function CBS_teButton(){
  //Remove Linebreaks
  $startCode=get_option("CBS_StartCode")=="" ? "<pre><code>":get_option("CBS_StartCode");
  $endCode=get_option("CBS_EndCode")=="" ? "</code></pre>":get_option("CBS_EndCode");
- $right_tag = str_replace("\r\n","",$endCode);
- $left_tag = str_replace("\r\n","",$startCode);
+ $right_tag = CBSmakeItPretty(str_replace("\r\n","",$endCode));
+ $left_tag = CBSmakeItPretty(str_replace("\r\n","",$startCode));
  if(get_option("CBS_InText")!="off" && get_current_screen()->base!="" && get_current_screen()->base=="post"){
   $content  = '<script type="text/javascript">';
   $content .= "if(typeof QTags != 'undefined'){QTags.addButton( 'CBSbutton', 'Code Block', '".$left_tag."', '".$right_tag."' );}";
