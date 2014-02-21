@@ -12,7 +12,7 @@ Add Code Blocks to your posts and pages. Customize the code blocks and add custo
 
 == Description ==
 
-Add Code Blocks to your posts and pages. Customize the code block from <pre> to <code> and add custom CSS to the WordPress Visual Editor.
+Add Code Blocks to your posts and pages. Customize the code block code to wrap and add custom CSS to the WordPress Visual Editor.
 See More Details : http://subinsb.com/posting-code-blocks-on-wordpress
 
 **Compatibilty**
