@@ -8,7 +8,7 @@ header("Content-type: application/x-javascript");
   init : function(ed, url) {
    ed.addButton('CBSbutton', {
     title : 'Code Block',
-    image : url+'/icon.png',
+    image : url+'/tool-icon.png',
     onclick : function() {
      var selection=ed.selection.getContent();
      <?
