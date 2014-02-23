@@ -88,7 +88,7 @@ function CBS_optPage(){
      <div style="font-size:16px;margin-top:15px;line-height:2em;" class="postbox">
       <div class="inside">
        <h3 class="hndle"><span>Other Settings</span></h3><br/>
-       <input type="checkbox" <?echo $pchecked;?> name="ptag"/>Remove Paragraph <b>&lt;p&gt;</b> tags from code.<br/>
+       <input type="checkbox" <?echo $pchecked;?> name="ptag"/>Remove Paragraph <b>&lt;p&gt;</b> tags from code. (Recommended)<br/>
        <p>
         When you wrap a code in post to a code block, the Paragraph (<b>&lt;p&gt;</b>) tags will enter in to the code block. Do you want to remove it ?
        </p>
