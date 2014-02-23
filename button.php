@@ -12,7 +12,7 @@ header("Content-type: application/x-javascript");
     onclick : function() {
      var selection=ed.selection.getContent();
      <?
-     if($_GET['nop']!=""){
+     if($_GET['nop']==""){
      ?>
      var selection=selection.replace(/\<p\>/g, "<br/>");
      var selection=selection.replace(/\<\/p\>/g, "");
