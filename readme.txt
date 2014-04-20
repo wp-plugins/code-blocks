@@ -3,7 +3,7 @@ Contributors: Subin Siby
 Donate link: http://subinsb.com/donate
 Tags: wordpress, code, blocks, post, pages, posts, page
 Requires at least: 3.0.1
-Tested up to: 3.8.1
+Tested up to: 3.9
 Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
