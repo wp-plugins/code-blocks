@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Code Blocks
  * Plugin URI: http://subinsb.com/posting-code-blocks-on-wordpress
- * Description: Add Code Blocks To Your posts and pages in the Visual Editor Or Text Editor.
- * Version: 0.2
+ * Description: Add Code Blocks To Your posts and pages in the Visual Editor or Text Editor.
+ * Version: 0.3
  * Author: Subin Siby
  * Author URI: http://subinsb.com
  * License: GPLv3
@@ -149,7 +149,8 @@ function CBS_init(){
 add_action("admin_init", "CBS_init");
 function CBS_custom_css($wp) {	
  $url = plugins_url()."/code-blocks";
- return $url.'/editor-style.css';
+ $wp .= ',' . $url.'/editor-style.css';
+ return $wp;
 }
 add_filter('mce_css','CBS_custom_css');
 ?>
